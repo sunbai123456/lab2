@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="helloworld" extends="struts-default">
+     
+      <action name="queryname" 
+            class="lab2.Query" 
+            method="execute">
+            <result name="success">/queryname.jsp</result>
+            <result name="error">/error.jsp</result>
+      </action>
+      <action name="bookdetail" 
+            class="lab2.BookDetails" 
+            method="execute">
+            <result name="success">/details.jsp</result>
+            <result name="error">/error.jsp</result>
+      </action>
+      <action name="Delete" 
+            class="lab2.Delete" 
+            method="execute">
+            <result name="success" type="redirectAction">
+            	<param name="actionName">queryname</param>
+            	<param name="authorname">${authorname}</param>
+            </result>
+            <result name="error">/error.jsp</result>
+      </action>
+     <action name="add" 
+            class="lab2.Add" 
+            method="execute">
+            <result name="success" type="redirectAction">
+            <param name="actionName">bookdetail</param>
+            <param name="bookname">${Title}</param>
+            </result>
+            <result name="fail">/addauthor.jsp</result>
+      </action> 
+       <action name="update" 
+            class="lab2.Update" 
+            method="execute">
+            <result name="success">/update.jsp</result>
+            <result name="error">/error.jsp</result>
+      </action>
+      <action name="addauthor" 
+            class="lab2.AddAuthor" 
+            method="execute">
+            <result name="success" type="redirectAction">
+            	<param name="actionName">queryname</param>
+            	<param name="authorname">${Name}</param>
+            </result>
+            <result name="error">/error.jsp</result>
+      </action>    
+      </package>
+</struts>
